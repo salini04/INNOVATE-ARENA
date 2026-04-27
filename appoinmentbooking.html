@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointment Booking</title>
+<style>
+:root{
+  --c1:#28293D;
+  --c2:#555184;
+  --c3:#9997BC;
+  --c4:#B2A6BE;
+  --white:#fff;
+}
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:white;
+}
+header{
+  text-align:center;
+  padding:20px;
+  background:var(--c2);
+}
+.container{
+  width:90%;
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  padding:20px;
+}
+@media(max-width:800px){
+  .container{grid-template-columns:1fr;}
+}
+.card{
+  background:var(--c1);
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:var(--c2);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  background:var(--c3);
+  color:black;
+}
+.summary{
+  background:var(--c2);
+  padding:20px;
+  border-radius:12px;
+  animation:fade 0.5s ease;
+}
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.popup{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.popup-box{
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+}
+.label{
+  font-size:12px;
+  color:var(--c3);
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>🩺 Book Appointment</h1>
+  <p>Schedule your cardiology consultation easily</p>
+</header>
+<div class="container">
+<div class="card">
+  <h3>Patient Details</h3>
+  <input id="name" placeholder="Full Name">
+  <input id="email" placeholder="Email">
+  <input id="phone" placeholder="Phone Number">
+  <div class="label">Preferred Date</div>
+  <input type="date" id="date">
+  <div class="label">Preferred Time</div>
+  <input type="time" id="time">
+  <select id="doctor">
+    <option>Dr. A. Khan</option>
+    <option>Dr. Priya Sen</option>
+    <option>Dr. R. Sharma</option>
+  </select>
+  <textarea id="msg" placeholder="Reason for visit"></textarea>
+  <button onclick="book()">Confirm Appointment</button>
+</div>
+<div class="summary" id="summary">
+  <h3>📄 Appointment Summary</h3>
+  <p>Fill form to generate summary</p>
+</div>
+</div>
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2>✅ Appointment Confirmed</h2>
+    <p>Your booking has been scheduled successfully.</p>
+    <p>📧 Email notification sent (simulation)</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+</div>
+<script>
+function book(){
+  let name=document.getElementById("name").value;
+  let email=document.getElementById("email").value;
+  let phone=document.getElementById("phone").value;
+  let date=document.getElementById("date").value;
+  let time=document.getElementById("time").value;
+  let doctor=document.getElementById("doctor").value;
+  let msg=document.getElementById("msg").value;
+  if(!name || !email || !phone || !date || !time){
+    alert("⚠ Please fill all required fields");
+    return;
+  }
+  if(!email.includes("@")){
+    alert("⚠ Invalid email");
+    return;
+  }
+  if(phone.length < 10){
+    alert("⚠ Invalid phone number");
+    return;
+  }
+  document.getElementById("summary").innerHTML=`
+    <h3>📄 Appointment Summary</h3>
+    <p><b>Name:</b> ${name}</p>
+    <p><b>Email:</b> ${email}</p>
+    <p><b>Phone:</b> ${phone}</p>
+    <p><b>Date:</b> ${date}</p>
+    <p><b>Time:</b> ${time}</p>
+    <p><b>Doctor:</b> ${doctor}</p>
+    <p><b>Reason:</b> ${msg}</p>
+  `;
+  document.getElementById("popup").style.display="flex";
+}
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+</body>
+</html>

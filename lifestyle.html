@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lifestyle & Prevention</title>
+<style>
+:root{
+  --c1:#B2A6BE;
+  --c2:#555184;
+  --c3:#9997BC;
+  --c4:#28293D;
+  --white:#fff;
+}
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:white;
+}
+header{
+  text-align:center;
+  padding:20px;
+  background:var(--c2);
+}
+.tabs{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  padding:15px;
+}
+.tab{
+  padding:10px 15px;
+  background:var(--c1);
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.tab:hover{
+  background:var(--c3);
+  color:black;
+}
+.active{
+  background:var(--c4);
+  color:black;
+}
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:auto;
+}
+.card{
+  background:var(--c1);
+  padding:20px;
+  border-radius:12px;
+  margin-top:10px;
+  animation:fade 0.5s ease;
+}
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr;}
+}
+.tip{
+  padding:10px;
+  background:var(--c2);
+  border-radius:10px;
+  margin-top:10px;
+}
+button{
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:8px;
+  background:var(--c2);
+  color:white;
+  cursor:pointer;
+}
+button:hover{
+  background:var(--c3);
+  color:black;
+}
+.circle{
+  width:120px;
+  height:120px;
+  margin:auto;
+  border-radius:50%;
+  background:var(--c3);
+  animation:breath 4s infinite;
+}
+@keyframes breath{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.4);}
+  100%{transform:scale(1);}
+}
+.center{
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌿 Lifestyle & Heart Prevention</h1>
+  <p>Build habits that protect your heart for life</p>
+</header>
+<div class="tabs">
+  <div class="tab active" onclick="show(0)">Diet</div>
+  <div class="tab" onclick="show(1)">Exercise</div>
+  <div class="tab" onclick="show(2)">Stress</div>
+  <div class="tab" onclick="show(3)">Quit Smoking</div>
+  <div class="tab" onclick="show(4)">Sleep</div>
+  <div class="tab" onclick="show(5)">Daily Tips</div>
+</div>
+<div class="container">
+<div class="card sec">
+  <h2>Heart Healthy Diet</h2>
+  <div class="grid">
+    <div>
+      <h3>✔ Eat More</h3>
+      <div class="tip">🥦 Vegetables</div>
+      <div class="tip">🐟 Omega-3 Fish</div>
+      <div class="tip">🥜 Nuts & Seeds</div>
+    </div>
+    <div>
+      <h3>❌ Avoid</h3>
+      <div class="tip">🍔 Junk Food</div>
+      <div class="tip">🧂 Excess Salt</div>
+      <div class="tip">🥤 Sugary Drinks</div>
+    </div>
+  </div>
+</div>
+<div class="card sec" style="display:none">
+  <h2>🏃 Exercise Routine</h2>
+  <div class="tip">🚶 30 min Walking Daily</div>
+  <div class="tip">🧘 15 min Yoga</div>
+  <div class="tip">🏋️ 3x Weekly Strength Training</div>
+  <button onclick="alert('▶ Video guide coming soon!')">
+    Watch Workout Plan
+  </button>
+</div>
+<div class="card sec" style="display:none">
+  <h2>🧘 Stress Management</h2>
+  <p>Follow breathing cycle:</p>
+  <div class="center">
+    <div class="circle"></div>
+    <p>Inhale → Hold → Exhale</p>
+  </div>
+  <div class="tip">💡 Meditation reduces heart risk by 30%</div>
+</div>
+<div class="card sec" style="display:none">
+  <h2>🚭 Quit Smoking</h2>
+  <div class="tip">🔥 Smoking damages arteries</div>
+  <div class="tip">❤️ Within 1 year risk drops by 50%</div>
+  <div class="tip">💪 You can reverse heart damage</div>
+  <button onclick="alert('Stay strong! Your heart will thank you ❤️')">
+    Motivation Boost
+  </button>
+</div>
+<div class="card sec" style="display:none">
+  <h2>🌙 Sleep Hygiene</h2>
+  <div class="tip">🛌 7–8 hours sleep daily</div>
+  <div class="tip">📵 No phone before bed</div>
+  <div class="tip">⏰ Fixed sleep schedule</div>
+</div>
+<div class="card sec" style="display:none">
+  <h2>💡 Daily Heart Tip</h2>
+  <div class="tip" id="dailyTip">Loading...</div>
+  <button onclick="newTip()">New Tip</button>
+</div>
+</div>
+<script>
+function show(n){
+  let sec=document.querySelectorAll(".sec");
+  let tab=document.querySelectorAll(".tab");
+  sec.forEach(s=>s.style.display="none");
+  tab.forEach(t=>t.classList.remove("active"));
+  sec[n].style.display="block";
+  tab[n].classList.add("active");
+}
+let tips=[
+"Walk 30 minutes daily for a healthy heart ❤️",
+"Reduce salt intake to control blood pressure 🧂",
+"Eat fruits instead of sugary snacks 🍎",
+"Stay hydrated to improve circulation 💧",
+"Sleep 7–8 hours for heart recovery 🌙",
+"Stress is a silent heart risk factor 🧠"
+]
+function newTip(){
+  let t=tips[Math.floor(Math.random()*tips.length)];
+  document.getElementById("dailyTip").innerText=t;
+}
+newTip();
+</script>
+</body>
+</html>

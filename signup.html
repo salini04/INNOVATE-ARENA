@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Health Hub|Login/signup page</title>
+    <style>
+        :root {
+            --primary-pink: #555184;
+            --bg-blue: #B2A6BE;
+            --dark-teal: #1a535c;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .auth-container {
+            background: var(--bg-blue);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+        .logo-container img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            color: var(--dark-teal);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+input:hover {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+input:focus {
+    border-color: var(--primary-pink);
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(233, 78, 119, 0.3);
+    transform: translateY(-1px);
+}
+.btn-primary {
+    background-color: var(--primary-pink);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-primary:hover {
+    background-color: #3dc9d6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(233, 78, 119, 0.4);
+}
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.toggle-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--dark-teal);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+.toggle-link:hover {
+    color: var(--primary-pink);
+    text-decoration: underline;
+}
+input:focus {
+            border-color: var(--primary-pink);
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background-color: var(--primary-pink);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #d63d66;
+            transform: translateY(-2px);
+        }
+        .toggle-link {
+            margin-top: 1.5rem;
+            color: var(--dark-teal);
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="modal-overlay" id="modal">
+    <div class="auth-container">
+        <div class="logo-container">
+        
+        </div>
+
+        <div id="login-form">
+            <h2> Heart health hub</h2>
+            <div class="input-group">
+                <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button class="btn btn-primary">Login</button>
+            <p class="toggle-link" onclick="toggleForm()">Don't have an account? Sign Up</p>
+        </div>
+
+        <div id="signup-form" class="hidden">
+            <h2>Create Account</h2>
+            <div class="input-group">
+                <input type="text" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Create Password" required>
+            </div>
+            <button class="btn btn-primary">Join the Hub</button>
+            <p class="toggle-link" onclick="toggleForm()">Already a member? Login</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleForm() {
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        
+        loginForm.classList.toggle('hidden');
+        signupForm.classList.toggle('hidden');
+    }
+</script>
+
+</body>
+</html>

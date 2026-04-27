@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Diseases-Heart Health Hub</title>
+<style>
+:root{
+  --d1:#bcaecb;
+  --d2:#555184;
+  --d3:#9795c5;
+  --d4:#28293D;
+  --white:#fff;
+}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--d1);
+  color:white;
+}
+header{
+  text-align:center;
+  padding:20px;
+  background:linear-gradient(90deg,var(--d2),var(--d3));
+  animation:slideDown 0.8s ease;
+}
+@keyframes slideDown{
+  from{transform:translateY(-50px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+.search-box{
+  display:flex;
+  justify-content:center;
+  margin:20px;
+}
+.search-box input{
+  width:60%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.card{
+  background:linear-gradient(145deg,var(--d2),var(--d3));
+  padding:20px;
+  border-radius:15px;
+  cursor:pointer;
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+  animation:fadeUp 0.6s ease;
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 10px 20px rgba(0,0,0,0.4);
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.icon{
+  font-size:30px;
+}
+.modal{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  background:white;
+  color:black;
+  width:80%;
+  max-width:600px;
+  padding:20px;
+  border-radius:12px;
+  animation:pop 0.3s ease;
+}
+@keyframes pop{
+  from{transform:scale(0.6);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:20px;
+}
+table{
+  width:90%;
+  margin:30px auto;
+  border-collapse:collapse;
+  background:var(--d2);
+}
+th,td{
+  padding:12px;
+  border:1px solid var(--d4);
+  text-align:center;
+}
+.pdf{
+  display:block;
+  margin:20px auto;
+  padding:10px 15px;
+  background:var(--d3);
+  border:none;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+.pdf:hover{
+  background:var(--d4);
+  color:black;
+}
+@media(max-width:600px){
+  .search-box input{
+    width:90%;
+  }
+}
+.symptom-section{
+  padding:30px;
+  text-align:center;
+}
+.symptom-box{
+  background:var(--d2);
+  padding:25px;
+  border-radius:15px;
+  display:inline-block;
+  width:100%;
+  max-width:400px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  animation:fadeUp 0.6s ease;
+}
+.symptom-box label{
+  display:block;
+  margin:10px 0;
+  font-size:16px;
+  cursor:pointer;
+}
+.analyze-btn{
+  margin-top:15px;
+  width:100%;
+}
+.result-text{
+  margin-top:15px;
+  font-size:18px;
+  font-weight:bold;
+}
+.risk-container{
+  width:100%;
+  background:#ccc;
+  border-radius:10px;
+  margin-top:10px;
+  overflow:hidden;
+}
+.risk-fill{
+  height:20px;
+  width:0%;
+  background:linear-gradient(90deg, green, orange, red);
+  border-radius:10px;
+  transition:1s ease;
+}
+@media(max-width:600px){
+  .symptom-box{
+    padding:20px;
+    width:90%;
+  }
+  .symptom-box label{
+    font-size:14px;
+  }
+}
+.result-text{
+  margin-top:15px;
+  font-size:16px;
+  line-height:1.5;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>He🫀rt Diseases Library</h1>
+  <p>Learn, understand and prevent cardiovascular diseases</p>
+</header>
+<div class="search-box">
+  <input type="text" id="search" placeholder="Search diseases...">
+</div>
+<div class="grid" id="grid">
+  <div class="card" data-name="coronary artery disease">
+    <div class="icon">🫀</div>
+    <h3>Coronary Artery Disease</h3>
+  </div>
+
+  <div class="card" data-name="heart attack myocardial infarction">
+    <div class="icon">⚡</div>
+    <h3>Heart Attack</h3>
+  </div>
+  <div class="card" data-name="arrhythmia">
+    <div class="icon">💓</div>
+    <h3>Arrhythmia</h3>
+  </div>
+  <div class="card" data-name="hypertension">
+    <div class="icon">📈</div>
+    <h3>Hypertension</h3>
+  </div>
+  <div class="card" data-name="heart failure">
+    <div class="icon">🫀</div>
+    <h3>Heart Failure</h3>
+  </div>
+  <div class="card" data-name="stroke">
+    <div class="icon">🧠</div>
+    <h3>Stroke</h3>
+  </div>
+</div>
+<button class="pdf">⬇ Download Heart Health Guide (PDF)</button>
+<h2 style="text-align:center;">Disease Comparison</h2>
+<table>
+<tr>
+  <th>Disease</th>
+  <th>Main Issue</th>
+  <th>Risk Level</th>
+</tr>
+<tr>
+  <td>Heart Attack</td>
+  <td>Blocked blood flow</td>
+  <td>High</td>
+</tr>
+<tr>
+  <td>Hypertension</td>
+  <td>High BP</td>
+  <td>Medium</td>
+</tr>
+<tr>
+  <td>Arrhythmia</td>
+  <td>Irregular heartbeat</td>
+  <td>Medium</td>
+</tr>
+</table>
+<section class="symptom-section">
+  <h2>🧠 Symptom Checker</h2>
+  <div class="symptom-box">
+    <label><input type="checkbox" value="pain"> Chest Pain</label>
+    <label><input type="checkbox" value="breath"> Shortness of Breath</label>
+    <label><input type="checkbox" value="dizzy"> Dizziness</label>
+    <label><input type="checkbox" value="bp"> High Blood Pressure</label>
+    <button onclick="analyzeRisk()" class="pdf analyze-btn">Analyze Risk</button>
+    <div id="result" class="result-text"></div>
+    <div class="risk-container">
+      <div id="riskBar" class="risk-fill"></div>
+    </div>
+  </div>
+</section>
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <h2 id="title"></h2>
+    <p id="content"></p>
+  </div>
+</div>
+<script>
+const data = {
+  "coronary artery disease": {
+    text: "Narrowing of arteries due to plaque buildup causing reduced blood flow.",
+  },
+  "heart attack myocardial infarction": {
+    text: "Occurs when blood flow to heart is blocked leading to tissue damage.",
+  },
+  "arrhythmia": {
+    text: "Irregular heartbeat that may be too fast or too slow.",
+  },
+  "hypertension": {
+    text: "High blood pressure that increases risk of heart diseases.",
+  },
+  "heart failure": {
+    text: "Heart cannot pump blood efficiently.",
+  },
+  "stroke": {
+    text: "Brain damage due to interrupted blood supply."
+  }
+};
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click",()=>{
+    const key = card.dataset.name;
+    document.getElementById("title").innerText = card.innerText;
+    document.getElementById("content").innerText = data[key].text;
+    document.getElementById("modal").style.display="flex";
+  });
+});
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+document.getElementById("search").addEventListener("keyup",function(){
+  let value = this.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card=>{
+    card.style.display = card.dataset.name.includes(value) ? "block":"none";
+  });
+});
+function analyzeRisk(){
+  let score = 0;
+  let symptoms = [];
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(el=>{
+    symptoms.push(el.value);
+    if(el.value === "pain") score += 40;
+    if(el.value === "breath") score += 30;
+    if(el.value === "dizzy") score += 20;
+    if(el.value === "bp") score += 10;
+  });
+  let level = "Low";
+  let color = "green";
+  if(score > 70){
+    level = "High";
+    color = "red";
+  }
+  else if(score > 40){
+    level = "Moderate";
+    color = "orange";
+  }
+  let disease = "General Heart Risk";
+  if(symptoms.includes("pain") && symptoms.includes("breath")){
+    disease = "Possible Heart Attack";
+  }
+  else if(symptoms.includes("bp") && score >= 40){
+    disease = "Possible Hypertension";
+  }
+  else if(symptoms.includes("dizzy")){
+    disease = "Possible Arrhythmia";
+  }
+  let advice = "Maintain a healthy lifestyle.";
+  if(level === "Moderate"){
+    advice = "Consult a doctor and monitor your symptoms.";
+  }
+  if(level === "High"){
+    advice = "⚠️ Immediate medical attention recommended!";
+  }
+  document.getElementById("result").innerHTML = `
+    <b>Risk Level:</b> ${level} (${score}%)<br>
+    <b>Prediction:</b> ${disease}<br>
+    <b>Advice:</b> ${advice}
+  `;
+  let bar = document.getElementById("riskBar");
+  bar.style.width = score + "%";
+  bar.style.background = color;
+  if(level === "High" && symptoms.includes("pain")){
+    alert("🚑 EMERGENCY: Possible Heart Attack! Call 108 immediately.");
+  }
+}
+</script>
+</body>
+</html>

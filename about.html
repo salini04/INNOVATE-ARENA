@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Heart Health Information</title>
+<style>
+:root{
+  --dark:#B2A6BE;
+  --mid1:#555184;
+  --mid2:#9997BC;
+  --light:#28293D;
+  --white:#ffffff;
+}
+*{
+  box-sizing:border-box;
+}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--dark);
+  color:var(--white);
+  overflow-x:hidden;
+}
+h2{
+  color:var(--light);
+  margin-bottom:10px;
+  font-size:28px;
+}
+section{
+  padding:70px 10%;
+}
+.hero{
+  text-align:center;
+  padding:90px 10%;
+  background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+  url("https://images.unsplash.com/photo-1584515933487-779824d29309") center/cover;
+}
+.hero h1{
+  font-size:44px;
+  animation:fadeDown 1s ease;
+}
+.hero p{
+  opacity:0.85;
+  font-size:18px;
+}
+.heart-box{
+  display:flex;
+  justify-content:center;
+  margin-top:30px;
+}
+.real-heart{
+  width:190px;
+  max-width:60vw;
+  filter: drop-shadow(0 0 15px rgba(255,0,0,0.6));
+  animation: pulse 1.2s infinite ease-in-out;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.box{
+  background:var(--mid1);
+  padding:20px;
+  border-radius:12px;
+  transition:0.3s;
+  font-size:15px;
+}
+.box:hover{
+  transform:translateY(-6px);
+  background:var(--mid2);
+}
+.warning li{
+  margin:10px 0;
+  font-size:16px;
+}
+.accordion{
+  background:var(--mid1);
+  margin:10px 0;
+  border-radius:10px;
+  overflow:hidden;
+}
+.acc-btn{
+  width:100%;
+  padding:15px;
+  background:var(--mid2);
+  border:none;
+  color:white;
+  text-align:left;
+  cursor:pointer;
+  font-size:16px;
+}
+.acc-content{
+  max-height:0;
+  overflow:hidden;
+  transition:0.4s ease;
+  padding:0 15px;
+  background:var(--mid1);
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.fade{
+  opacity:0;
+  transform:translateY(50px);
+  transition:0.8s ease;
+}
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (max-width: 1024px){
+  section{
+    padding:60px 6%;
+  }
+  .hero h1{
+    font-size:36px;
+  }
+  h2{
+    font-size:24px;
+  }
+}
+@media (max-width: 768px){
+  .hero{
+    padding:70px 5%;
+  }
+  .hero h1{
+    font-size:30px;
+  }
+  .hero p{
+    font-size:16px;
+  }
+  section{
+    padding:50px 5%;
+  }
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .real-heart{
+    width:150px;
+  }
+  .box{
+    font-size:14px;
+  }
+  .acc-btn{
+    font-size:15px;
+  }
+}
+@media (max-width: 480px){
+  .hero h1{
+    font-size:26px;
+  }
+  h2{
+    font-size:20px;
+  }
+  .real-heart{
+    width:130px;
+  }
+  section{
+    padding:40px 5%;
+  }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>Understanding Your Heart 🫀</h1>
+  <p>Learn how your heart works and protect it for life</p>
+  <div class="heart-box">
+  </div>
+</div>
+<section class="fade">
+  <h2>🫀 Overview of the Heart</h2>
+  <div class="grid">
+    <div class="box">
+      <h3>Structure</h3>
+      <p>The heart has four chambers: two atria and two ventricles working together.</p>
+    </div>
+    <div class="box">
+      <h3>Function</h3>
+      <p>It pumps oxygen-rich blood to all organs and keeps the body alive.</p>
+    </div>
+    <div class="box">
+      <h3>Power</h3>
+      <p>Beats over 100,000 times a day without stopping.</p>
+    </div>
+  </div>
+</section>
+<section class="fade">
+  <h2>🔄 How the Heart Works</h2>
+  <div class="box">
+    <p>
+      Blood follows this path:
+      <br><br>
+      Body → Right Heart → Lungs (oxygen) → Left Heart → Body
+    </p>
+    <p>
+      This continuous loop ensures oxygen reaches every cell in your body.
+    </p>
+  </div>
+</section>
+<section class="fade">
+  <h2>⚠️ Risk Factors</h2>
+  <div class="grid">
+    <div class="box">🚬 Smoking</div>
+    <div class="box">🍔 Obesity</div>
+    <div class="box">🩸 Diabetes</div>
+    <div class="box">💢 High Blood Pressure</div>
+    <div class="box">😰 Chronic Stress</div>
+    <div class="box">🧬 Genetics</div>
+  </div>
+</section>
+<section class="fade">
+  <h2>🚨 Warning Signs</h2>
+  <ul class="warning">
+    <li>Chest pain or pressure</li>
+    <li>Shortness of breath</li>
+    <li>Dizziness or fainting</li>
+    <li>Extreme fatigue without reason</li>
+  </ul>
+</section>
+<section class="fade">
+  <h2>💚 Prevention Tips</h2>
+  <div class="grid">
+    <div class="box">🥗 Balanced Diet</div>
+    <div class="box">🏃 Regular Exercise</div>
+    <div class="box">🧘 Stress Management</div>
+    <div class="box">🚭 Avoid Smoking</div>
+  </div>
+</section>
+<section class="fade">
+  <h2>❓ FAQs</h2>
+  <div class="accordion">
+    <button class="acc-btn">What is the main cause of heart disease?</button>
+    <div class="acc-content">
+      <p>Unhealthy lifestyle, smoking, poor diet, and lack of exercise are major causes.</p>
+    </div>
+  </div>
+  <div class="accordion">
+    <button class="acc-btn">Can heart disease be reversed?</button>
+    <div class="acc-content">
+      <p>Some conditions can be improved with lifestyle changes and treatment.</p>
+    </div>
+  </div>
+  <div class="accordion">
+    <button class="acc-btn">Is stress really harmful for the heart?</button>
+    <div class="acc-content">
+      <p>Yes, long-term stress increases blood pressure and risk of heart problems.</p>
+    </div>
+  </div>
+</section>
+<script>
+const sections = document.querySelectorAll(".fade");
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+sections.forEach(sec => observer.observe(sec));
+
+document.querySelectorAll(".acc-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const content = btn.nextElementSibling;
+
+    if(content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+});
+</script>
+</body>
+</html>
